@@ -38,7 +38,7 @@ function getConnection(url) {
 	return new PromiseConnection(connection);
 }
 
-const JOURNAL_SQL = 'SELECT activity_type, journable_id, login FROM journals, users WHERE users.id = user_id AND created_at > ?';
+const JOURNAL_SQL = 'SELECT activity_type, journable_id, login FROM journals, users WHERE users.id = user_id AND created_at > ? ORDER BY created_at';
 function getChanges(conn, lastRun) {
 	return conn.query(JOURNAL_SQL, [new Date(lastRun)])
 	.then(({results, fields}) => {
@@ -47,7 +47,13 @@ function getChanges(conn, lastRun) {
 			const key = `${row.activity_type}/${row.journable_id}`;
 			changeMap[key] = row.login;
 		});
-		return changeMap;
+                let changeList = Object.keys(changeMap).map(key => {
+                    return {
+                        key,
+                        user: changeMap[key]
+                    };
+                });
+		return changeList;
 	});
 }
 

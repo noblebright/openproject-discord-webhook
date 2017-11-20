@@ -27,8 +27,10 @@ function promiseIteration(iterator, fn, result) {
         }
 }
 
-/* function test(val, idx) {
+/*
+function test(val, idx) {
         let d = defer();
+         console.log('test');
         setTimeout(() => {
                 console.log('test', val, idx);
                 d.resolve(val);
@@ -37,7 +39,7 @@ function promiseIteration(iterator, fn, result) {
 }
 
 promiseMap([1,2,3], test)
-.then(result => console.log(result)); */
-
+.then(result => console.log(result)); 
+*/
 module.exports = { defer, promiseMap };
 
