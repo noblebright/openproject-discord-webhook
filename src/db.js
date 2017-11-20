@@ -33,7 +33,8 @@ function getConnection(url) {
 	    user: match[2],
 	    password: match[3],
 	    port: match[5] || 3306,
-	    database: match[6]
+	    database: match[6],
+            timezone: 'Z'
 	});
 	return new PromiseConnection(connection);
 }
