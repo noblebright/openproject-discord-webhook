@@ -14,9 +14,9 @@ function loadConfig(path = '/var/run/openproject-discord.json') {
 }
 
 function setTimestamp(stamp, path = '/var/run/openproject-discord.json') {
-   let newConfig = JSON.parse(JSON.stringify(config));
-   newConfig.LAST_RUN = stamp;
-   fs.writeFileSync(path, JSON.stringify(newConfig, null, 4), 'utf8');
+    let newConfig = JSON.parse(JSON.stringify(config));
+    newConfig.LAST_RUN = stamp;
+    fs.writeFileSync(path, JSON.stringify(newConfig, null, 4), 'utf8');
 }
 
-module.exports = { loadConfig, setTimestamp };
+module.exports = {loadConfig, setTimestamp};
