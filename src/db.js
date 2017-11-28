@@ -76,7 +76,7 @@ function getChanges(conn, lastRun) {
                         });
                     });
             };
-            return util.promiseMap(Object.keys(entityLookups))
+            return util.promiseMap(Object.keys(entityLookups), fn)
                 .then(() => {
                     changeList.forEach(change => {
                         change.name = subjects[change.key];
