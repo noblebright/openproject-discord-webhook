@@ -67,7 +67,7 @@ function getChanges(conn, lastRun) {
         .then(({changeList, entityLookups}) => {
             let subjects = {};
             const fn = type => {
-                let SQL = `SELECT id, subject FROM ${type} WHERE id in (${entityLookups[type].join(',')})`;
+                let SQL = `SELECT id, subject FROM ${type} WHERE id in ([...${entityLookups[type]].join(',')})`;
                 return conn.query(SQL)
                     .then(({results, fields}) => {
                         results.forEach(row => {

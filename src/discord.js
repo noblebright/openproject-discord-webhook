@@ -13,7 +13,7 @@ function postChange(webhook, op, change) {
         .set('Content-Type', 'application/json')
         .query({wait: true})
         .send({
-            content: `${change.name || change.key} updated`,
+            content: `${change.user} updated ${change.name || change.key}`,
             embeds: [{title: `Open in OpenProject`, url: `${op}${change.key}`}]
         });
 }
